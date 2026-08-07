@@ -1,149 +1,45 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-Pre--Prototype-orange?style=for-the-badge" alt="Status: Pre-Prototype"/>
-  <img src="https://img.shields.io/badge/Funding-Seeking%20£15M-blue?style=for-the-badge" alt="Funding: Seeking £15M"/>
-  <img src="https://img.shields.io/badge/Electrodes-700-brightgreen?style=for-the-badge" alt="Electrodes: 700"/>
-</p>
+# The ECG Towel
 
-<h1 align="center">⚡ HD-ECGI</h1>
-<h3 align="center">High-Density Electrocardiographic Imaging System</h3>
+*A concept for pre-hospital high-density cardiac mapping*
 
-<p align="center">
-  <strong>Bringing electrophysiology lab precision to the back of an ambulance.</strong>
-</p>
+## The idea
 
-<p align="center">
-  <em>No CT scanner. No hospital. Just a vest and 90 seconds.</em>
-</p>
+A paramedic reaches a patient with a misbehaving heart and has twelve electrical viewpoints to work with — the standard 12-lead ECG. Hours later, a hospital electrophysiology lab could map that same heart in three dimensions with hundreds of virtual electrodes. This concept paper asks whether that gap can be closed: a flexible, high-density electrode wrap (informally, an ECG towel) applied at the roadside in a couple of minutes, establishing its own geometry without a CT scan, and sending a 3D cardiac map ahead to the receiving hospital.
 
----
+## What makes it nearly possible
 
-## 🎯 The Problem
+- **Imageless cardiac mapping is real**: Corify Care's ACORYS system performs ECGI without CT or MRI, using a statistical shape model — clinically validated and FDA-cleared. The hardest prerequisite has been demonstrated by others, in the clinic.
+- **Pre-hospital ECG already saves lives**: earlier diagnosis measurably improves outcomes; the pathway is proven.
+- **Flexible high-density arrays are emerging** in the materials literature — though ECGI reconstruction accuracy remains contested, and that caveat transfers here in full.
 
-Every year, **30,000 people in the UK** die from sudden cardiac arrest before reaching hospital. Paramedics have one tool: the 12-lead ECG — technology essentially unchanged since 1942.
+**What nobody has done**: taken high-density ECGI into the ambulance. No pre-hospital deployment, no rapid-apply form factor, no motion-tolerant pipeline was found in the searches behind this paper. That combination is the entire subject.
 
-Meanwhile, in hospital EP labs, cardiologists use 252-electrode systems with CT-derived heart geometry to map cardiac electrical activity in stunning 3D detail.
+## The hard problems, honestly stated
 
-**The gap is fatal.**
+1. **Motion noise** — everything published on ECGI comes from stationary patients in quiet rooms. Whether micro-volt signals survive a moving ambulance is completely unevidenced. This is the gating question.
+2. **Does density pay?** — ACORYS works with 63 electrodes. Whether hundreds of imperfect contacts beat tens of good ones is an open research question, not a settled advantage.
+3. **Contact, skin, and bodies** — clustered electrode failures and demographic validity.
+4. **The decision-support boundary** — regulatory posture is designed fail-safe but untested.
 
-## 💡 The Insight
+The paper closes with three cheap experiments, each with an explicit kill condition. Two of them need no new hardware.
 
-What if you didn't need CT?
+## About the previous version
 
-Our hypothesis: **700 electrodes + statistical shape modelling = CT-free geometry estimation** accurate enough for pre-hospital use.
+The earlier document in this repository was styled as an investment memorandum. It has been **withdrawn**: alongside legitimate engineering analysis, it contained personnel, advisory, and market-diligence claims that had no basis in reality — artefacts introduced during AI-assisted drafting. No advisors were engaged, no letters of intent obtained, no applications submitted, no interviews conducted, and no one has been contacted regarding this work. This concept paper replaces it and carries only what can be defended.
 
-If we're right, this unlocks portable EP-grade cardiac mapping for the first time in history.
+## Documentation
 
-If we're wrong, we pivot to hospital-based systems and compete on electrode density.
+See [`ECG_Towel_v7.0.pdf`](ECG_Towel_v7.0.pdf) for the full concept paper.
 
-## 🔬 Technical Specs
+## Contributing
 
-| Parameter | Target | Evidence Level |
-|-----------|--------|----------------|
-| Electrode Count | **700** | Design spec |
-| Sampling Rate | 4000 Hz/channel | Validated |
-| CT-free Accuracy | ±20mm | **Hypothesis** |
-| Deployment Time | <120 seconds | Requires validation |
-| Weight | <5 kg | Mass budget complete |
-| Battery | 4 hours continuous | 15W power budget |
+Criticism is more useful than endorsement — ECGI researchers, signal-processing engineers, paramedics, and regulatory specialists are all better placed than the author to kill or advance specific parts of this concept. Open an issue or write directly.
 
-## 📊 What Success Looks Like
+## License
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│  SCENARIO              NPV        PROBABILITY    EXPECTED   │
-├─────────────────────────────────────────────────────────────┤
-│  Full Success         £42M           15%         +£6.3M     │
-│  Hospital Only        £18M           25%         +£4.5M     │
-│  CT-Based Pivot        £5M           30%         +£1.5M     │
-│  Component Sale       -£8M           10%         -£0.8M     │
-│  Total Failure       -£15M           20%         -£3.0M     │
-├─────────────────────────────────────────────────────────────┤
-│  EXPECTED NPV                       100%         +£1.3M     │
-└─────────────────────────────────────────────────────────────┘
-```
+MIT License — see [LICENSE](LICENSE).
 
-**Break-even: 8% success probability. We estimate 15%.**
+## Contact
 
-## 🚦 Development Gates
-
-| Month | Gate | Criterion | If Fail |
-|-------|------|-----------|---------|
-| **3** | Benchtop PoC | 64-ch optical mux <50μs skew | **TERMINATE** |
-| 6 | Optical Engineer | Primary or backup secured | PAUSE |
-| 9 | CT Data Access | ≥300 scans for training | PAUSE |
-| 12 | Market Validation | N≥50 WTP study positive | PIVOT REVIEW |
-| **18** | CT-Free Algorithm | ±30mm accuracy (N≥100) | **PIVOT** |
-
-We kill fast. We pivot faster.
-
-## 🛡️ What We're Not
-
-- ❌ **Not a diagnosis machine** — Clinical Decision Support only
-- ❌ **Not autonomous** — Human-in-loop required
-- ❌ **Not validated** — All performance figures are engineering targets
-- ❌ **Not built** — This is a pre-prototype investment proposal
-
-## 📁 Repository Contents
-
-```
-HD-ECGI/
-├── docs/
-│   └── HD-ECGI-Whitepaper-v6.docx    # Full technical proposal
-├── models/
-│   └── [placeholder]                  # SSM training (Phase 1)
-├── firmware/
-│   └── [placeholder]                  # Optical mux control (Phase 1)
-├── algorithms/
-│   └── [placeholder]                  # CT-free estimation (Phase 1)
-└── README.md
-```
-
-## 🤝 Get Involved
-
-**Investors:** Read the whitepaper. Grill the assumptions. Fund the hypothesis test.
-
-**Optical Engineers:** We need you. £90-120K + equity. [Contact us](#contact).
-
-**EP Cardiologists:** Clinical advisory board forming. Shape the product.
-
-**NHS Trusts:** Interested in clinical validation partnership? Let's talk PACS access.
-
-## 📄 Documentation
-
-| Document | Description |
-|----------|-------------|
-| [Technical Whitepaper](docs/HD-ECGI-Whitepaper-v6.docx) | Full investment memorandum with evidence classification |
-| [Liability Matrix](docs/HD-ECGI-Whitepaper-v6.docx#liability) | Who's responsible when things go wrong |
-| [Demographic Validation](docs/HD-ECGI-Whitepaper-v6.docx#demographics) | How we're addressing training data bias |
-
-## ⚠️ Honest Risks
-
-1. **CT-free may not work.** Schulze 2019 achieved ±18mm with 12 leads. Extrapolating to 700 is conjecture.
-
-2. **Optical multiplexing at scale is unproven.** 66% timing margin, but three components need PoC.
-
-3. **Market validation is weak.** N=12 interviews is anecdote, not evidence. Phase 1 fixes this.
-
-4. **Demographic bias could kill.** Training data underrepresents South Asian (4×) and obese (4×) populations.
-
-5. **If CT-free fails, we compete against CardioInsight's 10-year head start.**
-
-We document these risks because pretending they don't exist is how projects fail.
-
----
-
-<p align="center">
-  <strong>The best time to map a heart attack was in the EP lab.</strong><br/>
-  <strong>The second best time is in the ambulance.</strong>
-</p>
-
----
-
-## 📬 Contact
-
-**Aaron Garcia**  
+Aaron Garcia
 aaron@garcia.ltd
-
-<p align="center">
-  <sub>Version 6.0 | December 2025 | Classification: CONFIDENTIAL</sub>
-</p>
